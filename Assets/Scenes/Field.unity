@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8464360993478511717, guid: f3ca61d8edfa4594c8f8b5f5dc622b6c, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8464360993478511718, guid: f3ca61d8edfa4594c8f8b5f5dc622b6c, type: 3}
       propertyPath: m_Name
       value: Alpacka
