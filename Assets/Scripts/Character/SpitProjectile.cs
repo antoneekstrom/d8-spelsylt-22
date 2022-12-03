@@ -19,5 +19,6 @@ public class SpitProjectile : MonoBehaviour
 
     private void Start()
     {
+
     }
 }
