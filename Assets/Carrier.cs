@@ -29,8 +29,7 @@ public class Carrier : MonoBehaviour
         {
             if (Carry(carriable))
             {
-                if (carriable.TryGetComponent(out Interactable interactable))
-                    Destroy(interactable);
+                carriable.GetComponent<Interactable>().OnInteract.Invoke();
             }
         }
     }
