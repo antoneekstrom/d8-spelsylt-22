@@ -71,7 +71,6 @@ public class Alpacka : MonoBehaviour
             fleeDirection = ((Vector2)transform.position - pos).normalized;
             randomWalk.enabled = false;
             isScared = true;
-            print("Alpacka is scared");
         }
     }
 }
