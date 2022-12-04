@@ -9,10 +9,11 @@ public class Goblin : MonoBehaviour
     public float speed = 3;
     public float range = 3;
 
-    private Transform target;
-    private bool hasStolen = false;
+    private Enclosure target;
+    private bool fleeing = false;
 
     private Rigidbody2D rb;
+    private float searchCooldown = 0;
 
     private void Awake()
     {
@@ -21,16 +22,35 @@ public class Goblin : MonoBehaviour
 
     private void Start()
     {
-        Enclosure[] enclosures = FindObjectsOfType<Enclosure>().Where(x => !x.IsEmpty()).ToArray();
-        target = enclosures[Random.Range(0, enclosures.Length)].transform;
+        target = FindEnclosureTarget();
     }
 
     private void Update()
     {
-        if (!hasStolen && target && Displacement().magnitude <= range)
+        searchCooldown += Time.deltaTime;
+
+        // Remove target if it is empty
+        if (!fleeing && target && target.IsEmpty())
+        {
+            target = null;
+        }
+
+        // search for new target if there is
+        if (searchCooldown > 0.5 && !fleeing && !target)
+        {
+            searchCooldown = 0;
+            target = FindEnclosureTarget();
+        }
+
+        // go towards target if there is any
+        if (!fleeing && target && !target.IsEmpty() && Displacement().magnitude <= range)
         {
             target.GetComponent<Enclosure>().DropAlpacka();
-            hasStolen = true;
+            fleeing = true;
+        }
+        else if (fleeing && transform.position.magnitude > 60)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -38,10 +58,30 @@ public class Goblin : MonoBehaviour
     {
         Vector2 direction = Displacement().normalized;
 
-        if (hasStolen)
-            direction = -direction;
+        if (fleeing)
+        {
+            direction = transform.position.normalized;
+        }
 
         rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (TryGetComponent(out Dog _))
+        {
+            fleeing = true;
+        }
+    }
+
+    private Enclosure FindEnclosureTarget()
+    {
+        Enclosure[] enclosures = FindObjectsOfType<Enclosure>().Where(x => !x.IsEmpty()).ToArray();
+        
+        if (enclosures.Length < 1)
+            return null;
+
+        return enclosures[Random.Range(0, enclosures.Length)];
     }
 
     private Vector2 Displacement()

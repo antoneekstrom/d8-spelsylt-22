@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Enclosure : MonoBehaviour
 {
     public int capacity = 3;
+    public float dropDistance = 3;
 
     public UnityEvent OnFullCapacity;
 
@@ -33,6 +34,7 @@ public class Enclosure : MonoBehaviour
         alpackas.Remove(alpacka);
         alpacka.Uncarry();
         alpacka.gameObject.AddComponent<Interactable>();
+        alpacka.transform.position = ((Vector2) transform.position) + Random.insideUnitCircle * dropDistance;
         return alpacka;
     }
 
@@ -49,6 +51,11 @@ public class Enclosure : MonoBehaviour
             alpackas.Add(alpacka);
             alpacka.transform.position = transform.position;
             alpacka.transform.SetParent(transform);
+        }
+
+        if (IsFull())
+        {
+            OnFullCapacity.Invoke();
         }
     }
 }

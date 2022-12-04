@@ -6,7 +6,6 @@ using UnityEngine;
 public class Alpacka : MonoBehaviour
 {
     private RandomWalk randomWalk;
-    private Interactable interactable;
     private new Collider2D collider;
     private Rigidbody2D rb;
 
@@ -23,7 +22,6 @@ public class Alpacka : MonoBehaviour
     {
         randomWalk = GetComponent<RandomWalk>();
         collider = GetComponent<Collider2D>();
-        interactable = GetComponent<Interactable>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -52,8 +50,9 @@ public class Alpacka : MonoBehaviour
         transform.SetParent(farmer.transform);
         collider.enabled = false;
         randomWalk.enabled = false;
-        Destroy(interactable);
         isCarried = true;
+        if (TryGetComponent(out Interactable interactable))
+            Destroy(interactable);
     }
 
     public void Uncarry()
