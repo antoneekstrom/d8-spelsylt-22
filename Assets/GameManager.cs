@@ -13,22 +13,28 @@ public class GameManager : MonoBehaviour
     private float totalTime = 0;
 
     public TMP_Text timer;
-    public float levelTime = 60;
+    public float levelTime = 120;
+    private float levelTimeCounter;
 
     public LevelManager levelManager;
 
     private bool isPlaying = true;
 
+    private void Awake()
+    {
+        levelTimeCounter = levelTime;
+    }
+
     private void Update()
     {
         if (isPlaying)
         {
-            levelTime -= Time.deltaTime;
+            levelTimeCounter -= Time.deltaTime;
             totalTime += Time.deltaTime;
-            float minutes = Mathf.FloorToInt(levelTime / 60);
-            float seconds = Mathf.FloorToInt(levelTime % 60);
+            float minutes = Mathf.FloorToInt(levelTimeCounter / 60);
+            float seconds = Mathf.FloorToInt(levelTimeCounter % 60);
             timer.text = string.Format("{0:00}.{1:00}", minutes, seconds);
-            if (levelTime <= 0)
+            if (levelTimeCounter <= 0)
             {
                 GameOver();
                 timer.text = ("00:00");
@@ -46,7 +52,7 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         gameCleared.SetActive(false);
         isPlaying = true;
-        levelTime = 60;
+        levelTimeCounter = levelTime;
         totalTime = 0;
         levelManager.Restart();
     }
