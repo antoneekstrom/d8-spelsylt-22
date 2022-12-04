@@ -6,21 +6,27 @@ using UnityEngine;
 public class FieldRandomizer : MonoBehaviour
 {
     public bool generateOnStart = false;
-    public GameObject[] decorations;
+    public Sprite[] decorations;
     public Alpacka alpackaPrefab;
     public Enclosure enclosurePrefab;
+    public EnclosureManager enclosureManager;
     public int numberOfEnclosures = 1;
     public int numberOfDecorations = 7;
-    public int numberOfAlpackas = 5;
+    public int numberOfAlpackasPerEnclosure = 5;
 
     private void Start()
     {
-        Clear();
-        Generate();
+        if (generateOnStart)
+        {
+            Clear();
+            Generate();
+        }
     }
 
     public void Clear()
     {
+        enclosureManager.enclosures.Clear();
+
         foreach (Transform t in transform)
         {
             Destroy(t.gameObject);
@@ -31,18 +37,38 @@ public class FieldRandomizer : MonoBehaviour
     {
         GenerateAlpackas();
         GenerateEnclosures();
+        GenerateDecorations();
+    }
+
+    private void GenerateDecorations()
+    {
+        for (int i = 0; i < numberOfDecorations; i++)
+            InstantiateRandomDecoration();
     }
 
     private void GenerateAlpackas()
     {
-        for (int i = 0; i < numberOfAlpackas; i++)
+        for (int i = 0; i < numberOfAlpackasPerEnclosure * numberOfEnclosures; i++)
             InstantiateAlpacka();
     }
 
     private void GenerateEnclosures()
     {
         for (int i = 0; i < numberOfEnclosures; i++)
-            InstantiateEnclosure();
+        {
+            Enclosure enclosure = InstantiateEnclosure();
+            enclosure.capacity = numberOfAlpackasPerEnclosure;
+            enclosureManager.AddEnclosure(enclosure);
+        }
+    }
+
+    private GameObject InstantiateRandomDecoration()
+    {
+        Sprite decoration = decorations[Random.Range(0, decorations.Length - 1)];
+        SpriteRenderer obj = Instantiate(new GameObject().AddComponent<SpriteRenderer>());
+        obj.sprite = decoration;
+        obj.transform.position = RandomPoint();
+        return obj.gameObject;
     }
 
     private Enclosure InstantiateEnclosure()

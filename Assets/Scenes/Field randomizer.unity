@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f35a80f0d1a15146b4ad2de26911047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateOnStart: 0
+  generateOnStart: 1
   decorations:
   - {fileID: 0}
   - {fileID: 0}
