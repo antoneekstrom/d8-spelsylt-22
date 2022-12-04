@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameOverScreen;
+    public GameObject gameOver;
     public GameObject levelCleared;
     public GameObject gameCleared;
     public TMP_Text totalTimeText;
@@ -38,12 +38,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        gameOver.SetActive(true);
     }
 
     public void OnGameRestart()
     {
-        gameOverScreen.SetActive(false);
+        gameOver.SetActive(false);
         gameCleared.SetActive(false);
         isPlaying = true;
         levelTime = 60;
