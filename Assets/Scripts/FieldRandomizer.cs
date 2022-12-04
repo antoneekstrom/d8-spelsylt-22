@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class FieldRandomizer : MonoBehaviour
 {
-    public bool generateOnStart = false;
     public Sprite[] decorations;
     public Alpacka alpackaPrefab;
     public Enclosure enclosurePrefab;
@@ -22,12 +21,6 @@ public class FieldRandomizer : MonoBehaviour
     private void Start()
     {
         enclosureManager.OnAllFull.AddListener(() => enabled = false);
-
-        if (generateOnStart)
-        {
-            Clear();
-            Generate();
-        }
     }
 
     private void Update()

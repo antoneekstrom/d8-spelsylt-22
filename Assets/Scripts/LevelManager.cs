@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public FieldRandomizer firstLevel;
+
+    private void Start()
     {
-        
+        Restart();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Restart()
     {
-        
+        ClearAll();
+        firstLevel.Generate();
+    }
+
+    public void ClearAll()
+    {
+        foreach (FieldRandomizer field in FindObjectsOfType<FieldRandomizer>())
+        {
+            field.Clear();
+        }
     }
 }
