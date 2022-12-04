@@ -13,3 +13,6 @@ Den andra spelaren rör sig med piltangenterna och kan skrämma iväg alpackor o
 
 ## Hur startar jag spelet?
 Du laddar ner zip-filen från [release-sidan](https://github.com/antoneekstrom/d8-spelsylt-22/releases/tag/2). Först zippar du upp filen, och sen kan du exekvera den exekverbara filen som heter `Alpacka.exe` i mappen.
+
+## Third Party
+Alla Sprites och animeringar är gjorda av oss förtuom träden, buskarna och stenarna som är tagna från [unity asset store.](https://assetstore.unity.com/packages/2d/environments/vector-forest-scenery-209180)
