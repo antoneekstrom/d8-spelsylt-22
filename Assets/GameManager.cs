@@ -13,11 +13,9 @@ public class GameManager : MonoBehaviour
     private float totalTime = 0;
 
     public TMP_Text timer;
-    private float levelTime = 60;
+    public float levelTime = 60;
 
     public LevelManager levelManager;
-    public GameObject[] levels;
-    private int levelCount = 0;
 
     private bool isPlaying = true;
 
@@ -50,8 +48,6 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         levelTime = 60;
         totalTime = 0;
-        levelCount = 0;
-        //levels[0].GetComponent<FieldRandomizer>().Generate();
         levelManager.Restart();
     }
 
@@ -62,12 +58,11 @@ public class GameManager : MonoBehaviour
 
     public void OnNextLevel()
     {
-        levelCount++;
-
     }
 
     public void OnGameCleared()
     {
+        gameCleared.SetActive(true);
         DisplayTotalTime(totalTime);
     }
 

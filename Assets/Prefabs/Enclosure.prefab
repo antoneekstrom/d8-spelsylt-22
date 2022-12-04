@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capacity: 3
-  dropDistance: 3
+  dropDistance: 4.5
   OnFullCapacity:
     m_PersistentCalls:
       m_Calls: []
