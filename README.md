@@ -12,4 +12,4 @@ Den ena spelaren går med WASD och använder SPACE-knappen för att plocka upp o
 Den andra spelaren rör sig med piltangenterna och kan skrämma iväg alpackor och goblins.
 
 ## Hur startar jag spelet?
-Du exekverar den exekverbara filen som heter `Alpacka.exe` i mappen du kan ladda den från release-sidan här på github.
+Du laddar ner zip-filen från [release-sidan](https://github.com/antoneekstrom/d8-spelsylt-22/releases/tag/2). Först zippar du upp filen, och sen kan du exekvera den exekverbara filen som heter `Alpacka.exe` i mappen.
