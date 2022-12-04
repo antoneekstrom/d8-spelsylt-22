@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 17099084}
   - component: {fileID: 17099083}
   m_Layer: 0
-  m_Name: Field (1)
+  m_Name: Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,12 +176,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17099082}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f35a80f0d1a15146b4ad2de26911047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateOnStart: 0
   decorations:
   - {fileID: 21300000, guid: 3beb9634d1b258047a09db3dcdf4e70a, type: 3}
   - {fileID: 21300000, guid: 915806845094fdc4eaef3ade342e5746, type: 3}
@@ -193,6 +192,8 @@ MonoBehaviour:
   enclosurePrefab: {fileID: 6952542350018168145, guid: 63fbd3f1ab08eba4b97078235eac0428, type: 3}
   goblinPrefab: {fileID: 1843856586557765877, guid: ef5b6975cde48c24eb10f59b01b0977c, type: 3}
   enclosureManager: {fileID: 17099083}
+  goblinFrequency: 0.25
+  goblinInterval: 3.5
   numberOfEnclosures: 2
   numberOfDecorations: 7
   numberOfAlpackasPerEnclosure: 2
@@ -203,17 +204,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17099082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.93976}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.13698483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 607965027}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0106, y: -0.0045}
+  m_AnchoredPosition: {x: 1.0970343, y: 2.6911793}
   m_SizeDelta: {x: 17.8628, y: 9.9462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &145639684
@@ -753,7 +754,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675725390
 GameObject:
@@ -1782,7 +1783,7 @@ GameObject:
   - component: {fileID: 1563707851}
   - component: {fileID: 1563707850}
   m_Layer: 0
-  m_Name: Field
+  m_Name: Level 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1840,7 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f35a80f0d1a15146b4ad2de26911047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateOnStart: 1
   decorations:
   - {fileID: 21300000, guid: 915806845094fdc4eaef3ade342e5746, type: 3}
   - {fileID: 21300000, guid: 3beb9634d1b258047a09db3dcdf4e70a, type: 3}
@@ -1850,6 +1850,8 @@ MonoBehaviour:
   enclosurePrefab: {fileID: 6952542350018168145, guid: 63fbd3f1ab08eba4b97078235eac0428, type: 3}
   goblinPrefab: {fileID: 1843856586557765877, guid: ef5b6975cde48c24eb10f59b01b0977c, type: 3}
   enclosureManager: {fileID: 1563707850}
+  goblinFrequency: 0.05
+  goblinInterval: 2
   numberOfEnclosures: 1
   numberOfDecorations: 3
   numberOfAlpackasPerEnclosure: 3
@@ -1860,17 +1862,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563707849}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9.93976}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.13698483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 607965027}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0106, y: -0.0045}
+  m_AnchoredPosition: {x: 1.0970343, y: 2.6911793}
   m_SizeDelta: {x: 17.8628, y: 9.9462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1762119437
@@ -2496,6 +2498,18 @@ PrefabInstance:
     - target: {fileID: 6885917583445172153, guid: e54af771aff01d847896df0dd7590bde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885917583445172155, guid: e54af771aff01d847896df0dd7590bde, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.7169812
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885917583445172155, guid: e54af771aff01d847896df0dd7590bde, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.7169812
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885917583445172155, guid: e54af771aff01d847896df0dd7590bde, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.7169812
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

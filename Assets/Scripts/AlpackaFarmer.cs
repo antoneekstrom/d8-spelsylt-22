@@ -27,7 +27,7 @@ public class AlpackaFarmer : MonoBehaviour
             if (!carrying)
                 CarryAlpacka(alpacka);
         }
-        else if (interact.TryGetNearest(out Enclosure enclosure))
+        else if (carrying && interact.TryGetNearest(out Enclosure enclosure))
         {
             print("Deposit alpacka!");
             enclosure.DepositAlpacka(this);

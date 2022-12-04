@@ -5,22 +5,33 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class FieldRandomizer : MonoBehaviour
 {
-    public bool generateOnStart = false;
     public Sprite[] decorations;
     public Alpacka alpackaPrefab;
     public Enclosure enclosurePrefab;
     public Goblin goblinPrefab;
     public EnclosureManager enclosureManager;
+    public float goblinFrequency = 1f;
+    public float goblinInterval = 1;
     public int numberOfEnclosures = 1;
     public int numberOfDecorations = 7;
     public int numberOfAlpackasPerEnclosure = 5;
 
+    private float goblinTimer = 0;
+
     private void Start()
     {
-        if (generateOnStart)
+        enclosureManager.OnAllFull.AddListener(() => enabled = false);
+    }
+
+    private void Update()
+    {
+        goblinTimer += Time.deltaTime;
+
+        if (goblinTimer >= goblinInterval)
         {
-            Clear();
-            Generate();
+            goblinTimer = 0;
+            if (Random.value <= goblinFrequency)
+                InstantiateGoblin();
         }
     }
 
@@ -36,6 +47,7 @@ public class FieldRandomizer : MonoBehaviour
 
     public void Generate()
     {
+        enabled = true;
         GenerateAlpackas();
         GenerateEnclosures();
         GenerateDecorations();
@@ -63,6 +75,14 @@ public class FieldRandomizer : MonoBehaviour
         }
     }
 
+    private Goblin InstantiateGoblin()
+    {
+        Goblin goblin = Instantiate(goblinPrefab);
+        goblin.transform.position = Random.insideUnitCircle * 30;
+        goblin.transform.SetParent(transform);
+        return goblin;
+    }
+
     private GameObject InstantiateRandomDecoration()
     {
         Sprite decoration = decorations[Random.Range(0, decorations.Length)];
@@ -75,7 +95,7 @@ public class FieldRandomizer : MonoBehaviour
     private Enclosure InstantiateEnclosure()
     {
         Enclosure enclosure = Instantiate(enclosurePrefab);
-        enclosure.transform.position = RandomPoint();
+        enclosure.transform.position = RandomPoint() * 0.5f;
         enclosure.transform.SetParent(transform);
         return enclosure;
     }
