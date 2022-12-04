@@ -21,7 +21,6 @@ public class Dog : MonoBehaviour
         if (collider.TryGetComponent<Alpacka>(out Alpacka alpacka))
         {
             alpacka.Scare(transform.position);
-            print("scared an alpacka");
         }
     }
 
