@@ -9,6 +9,7 @@ public class FieldRandomizer : MonoBehaviour
     public Sprite[] decorations;
     public Alpacka alpackaPrefab;
     public Enclosure enclosurePrefab;
+    public Goblin goblinPrefab;
     public EnclosureManager enclosureManager;
     public int numberOfEnclosures = 1;
     public int numberOfDecorations = 7;
@@ -64,7 +65,7 @@ public class FieldRandomizer : MonoBehaviour
 
     private GameObject InstantiateRandomDecoration()
     {
-        Sprite decoration = decorations[Random.Range(0, decorations.Length - 1)];
+        Sprite decoration = decorations[Random.Range(0, decorations.Length)];
         SpriteRenderer obj = Instantiate(new GameObject().AddComponent<SpriteRenderer>());
         obj.sprite = decoration;
         obj.transform.position = RandomPoint();

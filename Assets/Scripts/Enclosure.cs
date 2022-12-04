@@ -17,9 +17,23 @@ public class Enclosure : MonoBehaviour
         alpackas = new List<Alpacka>();
     }
 
+    public bool IsEmpty()
+    {
+        return alpackas.Count < 1;
+    }
+
     public bool IsFull()
     {
         return alpackas.Count >= capacity;
+    }
+
+    public Alpacka DropAlpacka()
+    {
+        Alpacka alpacka = alpackas[0];
+        alpackas.Remove(alpacka);
+        alpacka.Uncarry();
+        alpacka.gameObject.AddComponent<Interactable>();
+        return alpacka;
     }
 
     public void DepositAlpacka(AlpackaFarmer farmer)
