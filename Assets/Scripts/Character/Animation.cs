@@ -7,6 +7,7 @@ public class Animation : MonoBehaviour
     private Animator a;
     private Rigidbody2D rb;
     private Transform tr;
+    private bool isFacingLeft = true;
     void Start()
     {
         a = GetComponent<Animator>();
@@ -18,13 +19,20 @@ public class Animation : MonoBehaviour
     void Update()
     {
         a.SetFloat("Speed", rb.velocity.magnitude);
-        if (rb.velocity.x > 0.05)
+        a.SetFloat("SpeedY", rb.velocity.y);
+        if (rb.velocity.x > 0.05 && isFacingLeft)
         {
-            tr.localScale = new Vector3(-1, 1, 1);
+            turn();
         }
-        else if(rb.velocity.x < -0.05)
+        else if(rb.velocity.x < -0.05 && !isFacingLeft)
         {
-            tr.localScale = new Vector3(1, 1, 1);
+            turn();
         }
     }
+
+    private void turn()
+    {
+        tr.localScale = new Vector3(tr.localScale.x * -1, tr.localScale.y, tr.localScale.z);
+        isFacingLeft = !isFacingLeft;
+    } 
 }
