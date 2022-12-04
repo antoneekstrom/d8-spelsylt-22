@@ -7,6 +7,7 @@ public class RandomWalk : MonoBehaviour
     public float range = 5;
     public float frequency = 3;
     public float speed = 2;
+    public RectTransform area;
 
     private Rigidbody2D rb;
 
@@ -25,7 +26,20 @@ public class RandomWalk : MonoBehaviour
 
     private void Start()
     {
-        target = Random.insideUnitCircle * range;
+        target = PickTargetLocation();
+    }
+
+    private Vector2 PickTargetLocation()
+    {
+        if (area)
+        {
+            Rect rect = area.rect;
+            return new Vector2(Random.Range(rect.xMin, rect.xMax), Random.Range(rect.yMin, rect.yMax));
+        }
+        else
+        {
+            return Random.insideUnitCircle * range;
+        }
     }
 
     private void Update()
@@ -35,7 +49,7 @@ public class RandomWalk : MonoBehaviour
         if (nextTargetTimer >= frequency)
         {
             nextTargetTimer = 0;
-            target = Random.insideUnitCircle * range;
+            target = PickTargetLocation();
         }
     }
     private void FixedUpdate()

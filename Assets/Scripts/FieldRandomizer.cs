@@ -15,8 +15,11 @@ public class FieldRandomizer : MonoBehaviour
 
     private void Start()
     {
-        Clear();
-        Generate();
+        if (generateOnStart)
+        {
+            Clear();
+            Generate();
+        }
     }
 
     public void Clear()
