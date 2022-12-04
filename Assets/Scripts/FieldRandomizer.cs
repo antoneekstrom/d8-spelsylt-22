@@ -6,7 +6,7 @@ using UnityEngine;
 public class FieldRandomizer : MonoBehaviour
 {
     public bool generateOnStart = false;
-    public GameObject[] decorations;
+    public Sprite[] decorations;
     public Alpacka alpackaPrefab;
     public Enclosure enclosurePrefab;
     public EnclosureManager enclosureManager;
@@ -37,6 +37,13 @@ public class FieldRandomizer : MonoBehaviour
     {
         GenerateAlpackas();
         GenerateEnclosures();
+        GenerateDecorations();
+    }
+
+    private void GenerateDecorations()
+    {
+        for (int i = 0; i < numberOfDecorations; i++)
+            InstantiateRandomDecoration();
     }
 
     private void GenerateAlpackas()
@@ -53,6 +60,15 @@ public class FieldRandomizer : MonoBehaviour
             enclosure.capacity = numberOfAlpackasPerEnclosure;
             enclosureManager.AddEnclosure(enclosure);
         }
+    }
+
+    private GameObject InstantiateRandomDecoration()
+    {
+        Sprite decoration = decorations[Random.Range(0, decorations.Length - 1)];
+        SpriteRenderer obj = Instantiate(new GameObject().AddComponent<SpriteRenderer>());
+        obj.sprite = decoration;
+        obj.transform.position = RandomPoint();
+        return obj.gameObject;
     }
 
     private Enclosure InstantiateEnclosure()
