@@ -17,6 +17,7 @@ public class RandomWalk : MonoBehaviour
     public void ToggleEnabled()
     {
         enabled = !enabled;
+        PickTargetLocation();
     }
 
     private void Awake()
