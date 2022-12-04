@@ -23,6 +23,11 @@ public class RandomWalk : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        target = Random.insideUnitCircle * range;
+    }
+
     private void Update()
     {
         nextTargetTimer += Time.deltaTime;
@@ -32,7 +37,10 @@ public class RandomWalk : MonoBehaviour
             nextTargetTimer = 0;
             target = Random.insideUnitCircle * range;
         }
-
-        rb.velocity = (target - (Vector2)transform.position).normalized * speed;
+    }
+    private void FixedUpdate()
+    {
+        Vector2 direction = (target - (Vector2)transform.position).normalized;
+        rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
     }
 }
