@@ -9,16 +9,20 @@ public class Dog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent<Alpacka>(out Alpacka alpacka))
+        if (collider.TryGetComponent(out Alpacka alpacka))
         {
             alpacka.Scare(transform.position);
             print("scared an alpacka");
+        }
+        else if (collider.TryGetComponent(out Goblin goblin))
+        {
+            goblin.Fleeing = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.TryGetComponent<Alpacka>(out Alpacka alpacka))
+        if (collider.TryGetComponent(out Alpacka alpacka))
         {
             alpacka.Scare(transform.position);
         }

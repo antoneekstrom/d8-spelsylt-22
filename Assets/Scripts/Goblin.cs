@@ -10,7 +10,7 @@ public class Goblin : MonoBehaviour
     public float range = 3;
 
     private Enclosure target;
-    private bool fleeing = false;
+    public bool Fleeing { get; set; }
 
     private Rigidbody2D rb;
     private float searchCooldown = 0;
@@ -30,25 +30,25 @@ public class Goblin : MonoBehaviour
         searchCooldown += Time.deltaTime;
 
         // Remove target if it is empty
-        if (!fleeing && target && target.IsEmpty())
+        if (!Fleeing && target && target.IsEmpty())
         {
             target = null;
         }
 
         // search for new target if there is
-        if (searchCooldown > 0.5 && !fleeing && !target)
+        if (searchCooldown > 0.5 && !Fleeing && !target)
         {
             searchCooldown = 0;
             target = FindEnclosureTarget();
         }
 
         // go towards target if there is any
-        if (!fleeing && target && !target.IsEmpty() && Displacement().magnitude <= range)
+        if (!Fleeing && target && !target.IsEmpty() && Displacement().magnitude <= range)
         {
             target.GetComponent<Enclosure>().DropAlpacka();
-            fleeing = true;
+            Fleeing = true;
         }
-        else if (fleeing && transform.position.magnitude > 60)
+        else if (Fleeing && transform.position.magnitude > 60)
         {
             Destroy(gameObject);
         }
@@ -58,20 +58,12 @@ public class Goblin : MonoBehaviour
     {
         Vector2 direction = Displacement().normalized;
 
-        if (fleeing)
+        if (Fleeing)
         {
             direction = transform.position.normalized;
         }
 
         rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * direction);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (TryGetComponent(out Dog _))
-        {
-            fleeing = true;
-        }
     }
 
     private Enclosure FindEnclosureTarget()
